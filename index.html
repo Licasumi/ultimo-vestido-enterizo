@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LICASUMI - Enterizo strech Premium</title>
+    <style>
+        /* Estilos Generales */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #fafafa;
+            line-height: 1.6;
+            scroll-behavior: smooth; /* Para que el desplazamiento al formulario sea suave */
+        }
+        .container {
+            max-width: 600px; /* Tamaño ideal para móvil y tablet */
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        
+        /* Barra de Anuncio */
+        .top-bar {
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 12px 10px;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        /* Secciones */
+        section {
+            padding: 30px 20px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        /* Textos y Títulos */
+        h1 {
+            font-size: 26px;
+            text-align: center;
+            color: #111;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        h2 {
+            font-size: 22px;
+            color: #222;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .price-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .price {
+            font-size: 32px;
+            font-weight: 900;
+            color: #d32f2f;
+        }
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 18px;
+            margin-left: 10px;
+        }
+
+        /* Galería de Imágenes (Deslizable) */
+        .gallery {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 15px;
+            padding-bottom: 10px;
+        }
+        .gallery img {
+            scroll-snap-align: center;
+            flex: 0 0 95%;
+        }
+
+        /* Botones de Navegación (Deslizan al formulario) */
+        .btn-scroll {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background-color: #111;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            margin: 20px 0;
+            box-sizing: border-box;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        /* Listas de Beneficios */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 16px;
+        }
+        .list-emoji li::before {
+            content: "✔️";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Caja de Oferta */
+        .offer-box {
+            background-color: #fff9e6;
+            border: 2px dashed #ffb300;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .offer-box h3 {
+            color: #d32f2f;
+            margin-top: 0;
+        }
+
+        /* Estilos del Formulario de Pedido */
+        .form-container {
+            background-color: #f2fcf5;
+            border: 2px solid #25D366;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .form-container h2 {
+            color: #1ebe57;
+            margin-top: 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+        .form-row {
+            display: flex;
+            gap: 10px;
+        }
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        /* Botón de Enviar a WhatsApp */
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background-color: #25D366; 
+            color: white;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(37, 211, 102, 0.3);
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #1ebe57;
+        }
+
+        /* Preguntas Frecuentes */
+        .faq h4 {
+            margin-bottom: 5px;
+            font-size: 18px;
+            color: #111;
+        }
+        .faq p {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        /* Pie de página */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #111;
+            color: #fff;
+            font-size: 14px;
+        }
+    </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '923666683544659');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=923666683544659&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+    <!-- Barra de Anuncio Superior -->
+    <div class="top-bar">
+        🚚 ENVÍO GRATIS A TODA COLOMBIA | 💵 PAGA AL RECIBIR EN CASA
+    </div>
+
+    <div class="container">
+        
+        <!-- SECCIÓN 1: Hero Section -->
+        <section>
+            <h1>ENTERIZO EN STRECH</h1>
+            <p class="subtitle">🌟 El secreto para verte elegante en segundos ya llegó. ❤️ Este enterizo se adapta a tu cuerpo y resalta lo mejor de ti.🛍️ Una prenda indispensable que no puede faltar en tu clóset. Renueva tu clóset hoy mismo con la calidad exclusiva de <strong>LICASUMI</strong>.</p>
+	<!-- SECCIÓN 1: Beneficios -->
+        <section>
+            <h2>✨ El enterizo que está haciendo lucir increíble a todas las mujeres este año.</h2>
+            <ul>
+                <li>👗 <strong>Ajuste Perfecto que Moldea:</strong> 🔥 Últimas unidades disponibles, no te quedes sin el tuyo.</li>
+                <li>👜 <strong>Bolsillos 100% Funcionales:</strong> ⚠️ Alta demanda esta semana, asegura el tuyo antes de que se termine.</li>
+                <li>🌟 <strong>Versatilidad Absoluta:</strong> 🚚 Aprovecha pago contra entrega y recíbelo sin salir de casa..</li>
+		<li><strong>Tallas disponibles:</strong> S, M, L, XL, XXL.</li>
+            </ul>
+            
+            <div class="price-container">
+                <span class="price">$115.000 COP</span>
+                <span class="old-price">$130.000</span>
+            </div>
+
+            <!-- Carrusel de Imágenes Principal -->
+            <div class="gallery">
+                <img src="img/enterizo frente.png" alt="enterizo espalda frente">
+                <img src="img/enterizo espalda.png" alt="enterizo espalda espalda">
+		<img src="img/enterizo pierna.png" alt="enterizo espalda pierna">
+            </div>
+
+            <a href="#seccion-pedido" class="btn-scroll">👉 QUIERO PEDIR Y PAGAR EN CASA 👈</a>
+        </section>
+
+        <!-- SECCIÓN 2: Beneficios -->
+        <section>
+            <h2>Vestido para Mujer Tela Rigida✨</h2>
+            <ul>
+                <li>👗 <strong>Ajuste Perfecto que Moldea:</strong> El Vestido Tela Rigida premium estructura tu silueta, dándote un look estilizado que se mantiene intacto todo el día.</li>
+                <li>👜 <strong>Bolsillos 100% Funcionales:</strong> Práctico y con estilo en una sola prenda.</li>
+                <li>🌟 <strong>Versatilidad Absoluta:</strong> Perfecta tanto para un día casual como para una salida de fin de semana.</li>
+            </ul>
+            
+            <!-- Carrusel de Imágenes Secundario -->
+            <div class="gallery">
+                <img src="img/denim_rigido_frente.png" alt="denim rigido frente">
+                <img src="img/denim_rigido_espalda.png" alt="denim rigido espalda">
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: Detalles del Producto -->
+        <section>
+            <h2>Calidad Premium en cada detalle 🧵</h2>
+            <ul class="list-emoji">
+                <li><strong>Material:</strong> Jeans Rígido Premium de alta durabilidad (No se destiñe ni pierde la forma).</li>
+                <li><strong>Diseño:</strong>✨ Vestido Strapless Espalda Descubierta para mayor movilidad y frescura.</li>
+                <li><strong>Tallas disponibles:</strong> S, M, L (Horma perfecta).</li>
+            </ul>
+
+            <img src="img/vestido jeans.jpeg" alt="Detalle Vestido en jeans" style="margin-top: 15px; margin-bottom: 15px;">
+
+            <a href="#seccion-pedido" class="btn-scroll">🛒 QUIERO LA MÍA AHORA</a>
+        </section>
+
+        <!-- SECCIÓN 4: La Oferta -->
+        <section>
+            <div class="offer-box">
+                <h3>🔥 OFERTA ESPECIAL POR TIEMPO LIMITADO 🔥</h3>
+                <p>Lleva ENTERIZO EN STRECH Premium por solo <strong>$115.000 COP</strong></p>
+		<p>Lleva VESTIDO para MUJER TELA RIGIDA por solo <strong>$125.000 COP</strong></p>
+                <p>🎁 <strong>Envío GRATIS</strong> a cualquier ciudad o municipio.</p>
+                <p>🤝 <strong>Pago CONTRA ENTREGA:</strong> Cero riesgos. Pagas en efectivo únicamente cuando el repartidor te entregue tu paquete en la puerta de tu casa.</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: FORMULARIO DE PEDIDO (NUEVO) -->
+        <section id="seccion-pedido">
+            <div class="form-container">
+                <h2>📝 Completa tus datos para el envío</h2>
+                <p style="font-size: 14px; margin-top: -10px; margin-bottom: 20px;">Llena este formulario y serás redirigida a nuestro WhatsApp para confirmar tu pedido contra entrega.</p>
+                
+                <form id="formPedido" onsubmit="enviarWhatsApp(event)">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="talla">Talla requerida *</label>
+                            <select id="talla" class="form-control" required>
+                                <option value="">Selecciona...</option>
+                                <option value="S">Talla S</option>
+                                <option value="M">Talla M</option>
+                                <option value="L">Talla L</option>
+				<option value="XL">Talla XL</option>
+				<option value="XXL">Talla XXL</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="color">ESTILO*</label>
+                            <select id="color" class="form-control" required>
+                                <option value="">Selecciona...</option>
+                                <option value="ENTERIZO">ENTERIZO EN STRECH</option>
+                                <option value="VESTIDO">Vestido para Mujer Tela Rigida</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombres">Nombres completos *</label>
+                        <input type="text" id="nombres" class="form-control" placeholder="Ej: Maria Camila" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apellidos">Apellidos *</label>
+                        <input type="text" id="apellidos" class="form-control" placeholder="Ej: Perez Garcia" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="celular">Número de Celular *</label>
+                        <input type="tel" id="celular" class="form-control" placeholder="Ej: 3001234567" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="departamento">Departamento *</label>
+                            <input type="text" id="departamento" class="form-control" placeholder="Ej: Antioquia" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ciudad">Ciudad/Municipio *</label>
+                            <input type="text" id="ciudad" class="form-control" placeholder="Ej: Medellín" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Dirección exacta de domicilio *</label>
+                        <input type="text" id="direccion" class="form-control" placeholder="Calle, Carrera, Barrio, Conjunto..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="correo">Correo electrónico (Opcional)</label>
+                        <input type="email" id="correo" class="form-control" placeholder="tucorreo@email.com">
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        ✅ CONFIRMAR Y ENVIAR A WHATSAPP
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 6: Preguntas Frecuentes -->
+        <section class="faq">
+            <h2>Preguntas Frecuentes</h2>
+            
+            <h4>¿Cómo sé cuál es mi talla?</h4>
+            <p>Manejamos medidas estándar de excelente horma. Si normalmente eres talla 10 en tus jeans rígidos, te sugerimos pedir la talla 10.</p>
+
+            <h4>¿Cuánto tarda en llegar mi pedido?</h4>
+            <p>Una vez confirmes tu compra, el tiempo de entrega es de 2 a 5 días hábiles, dependiendo de tu ciudad.</p>
+
+            <h4>¿Es seguro comprar?</h4>
+            <p>¡Totalmente! En <strong>LICASUMI</strong> no te pedimos pagos por adelantado ni tarjetas de crédito. Tu pago está 100% protegido porque le pagas directamente a la transportadora al recibir el producto.</p>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 LICASUMI. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- SCRIPT DE JAVASCRIPT PARA ENVIAR A WHATSAPP -->
+    <script>
+        function enviarWhatsApp(event) {
+            event.preventDefault(); // Evita que la página se recargue al enviar el formulario
+
+            // Capturar los valores ingresados por el cliente
+            const talla = document.getElementById('talla').value;
+            const color = document.getElementById('color').value;
+            const nombres = document.getElementById('nombres').value;
+            const apellidos = document.getElementById('apellidos').value;
+            const celular = document.getElementById('celular').value;
+            const departamento = document.getElementById('departamento').value;
+            const ciudad = document.getElementById('ciudad').value;
+            const direccion = document.getElementById('direccion').value;
+            const correo = document.getElementById('correo').value;
+
+            // Armar el mensaje de texto para WhatsApp
+            let mensaje = `👋 Hola LICASUMI, deseo hacer un pedido con PAGO CONTRA ENTREGA:\n\n`;
+            mensaje += `*Producto:*ENTERIZO EN STRECH Premium ($115.000 COP)\n`;
+            mensaje += `*Talla:* ${talla}\n`;
+            mensaje += `*Color:* ${color}\n\n`;
+            mensaje += `*DATOS DE ENVÍO:*\n`;
+            mensaje += `*Nombre:* ${nombres} ${apellidos}\n`;
+            mensaje += `*Celular:* ${celular}\n`;
+            mensaje += `*Ubicación:* ${ciudad}, ${departamento}\n`;
+            mensaje += `*Dirección:* ${direccion}\n`;
+            
+            if(correo !== "") {
+                mensaje += `*Correo:* ${correo}\n`;
+            }
+
+            // Codificar el texto para que los espacios y saltos de línea funcionen en una URL
+            const mensajeCodificado = encodeURIComponent(mensaje);
+            
+            // Número de WhatsApp al que se envía
+            const numeroWhatsApp = "573174942761";
+            
+            // Crear el enlace final
+            const url = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
+            
+            // Abrir WhatsApp en una nueva pestaña
+            window.open(url, '_blank');
+        }
+    </script>
+
+</body>
+</html>
